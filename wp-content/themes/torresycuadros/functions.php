@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * Register Custom Navigation Walker
+ */
+function register_navwalker(){
+	require_once get_template_directory() . '/template-parts/navbar.php';
+}
+add_action( 'after_setup_theme', 'register_navwalker' );
+
 function agregar_css_js() {
   wp_enqueue_style('fontAwesome', get_template_directory_uri() . 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
   wp_enqueue_style('Gugi', get_template_directory_uri() . 'https://fonts.googleapis.com/css?family=Gugi');
@@ -15,3 +23,13 @@ function agregar_css_js() {
   wp_enqueue_script('mdb-js', get_template_directory_uri() . '/js/mdb.min.js', array ( 'bootstrap-js' ), '4.5.6'. true);
 }
 add_action('wp_enqueue_scripts', 'agregar_css_js');
+
+//Registrar menús
+function register_my_menus() {
+  register_nav_menus(
+    array(
+      'Menu-principal' => __( 'Menú Superior' )
+      )
+    );
+  }
+add_action( 'init', 'register_my_menus' );

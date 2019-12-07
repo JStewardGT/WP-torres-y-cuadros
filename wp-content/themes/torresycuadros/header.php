@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html  <?php language_attributes(); ?>>
 
 <head>
 	<meta charset="utf-8">
@@ -11,11 +11,11 @@
 	<?php wp_head(); ?>
 </head>
 
-<body>
+<body <?php body_class(); ?>>
 	<header>
 		<nav class="navbar navbar-expand-xl navbar-light bg-white fixed-top">
 			<div class="navbar-brand mr-0" href="index.html">
-				<a href="index.html"><img src="img/logo/Imagen1.png" alt="Torres y cuadros" class="mb-xs-1"></a>
+				<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><img src="img/logo/Imagen1.png" alt="Torres y cuadros" class="mb-xs-1"></a>
 				<br><a class="text-dark font-weight-bold" href="tel:0317943643">PBX: 7 943 643 <i class="fas fa-phone"></i></a>
 			</div>
 			<div class="contacto pl-2 font-weight-bold">
@@ -27,43 +27,18 @@
 				aria-controls="nav-superior" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<div class="collapse navbar-collapse justify-content-end" id="nav-superior">
-				<ul class="navbar-nav text-center">
-					<li class="nav-item active">
-						<a class="nav-link" href="index.html">Inicio</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#" data-toggle="modal" data-target="#en-construccion">Servicios</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="propietarios.html">Propietarios</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="arrendatario.html">Arrendatario</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="https://www.ciencuadras.com/inmobiliaria/torres-y-cuadros-asociados-sas-8394"
-							target="_blank">Inmuebles</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="preguntas-frecuentes.html">Preguntas</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="https://www.e-collect.com/customers/Torresycuadros.htm" target="_blank">Pagos
-							PSE</a>
-					</li>
-					<!-- <li class="nav-item">
-						<a class="nav-link" href="empleados.html">Empleados</a>
-					</li> -->
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" id="Empleados" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false">Empleados</a>
-						<div class="dropdown-menu dropdown-primary" aria-labelledby="Empleados">
-							<a class="dropdown-item" href="empleados.html">CRM</a>
-							<a class="dropdown-item" href="https://portalco.net2phoneoffice.com/" target="_blank">PBX</a>
-						</div>
-					</li>
-				</ul>
-			</div>
+
+			<?php
+        wp_nav_menu( array(
+            'theme_location'    => 'Menu-principal',
+            'depth'             => 2,
+            'container'         => 'div',
+            'container_class'   => 'collapse navbar-collapse justify-content-end',
+            'container_id'      => 'nav-superior',
+            'menu_class'        => 'nav navbar-nav text-center',
+            'fallback_cb'       => 'WP_Bootstrap_Navwalker::fallback',
+            'walker'            => new WP_Bootstrap_Navwalker(),
+        ) );
+        ?>
 		</nav>
 	</header>
